@@ -1,0 +1,9 @@
+{
+  "name": "@signals/store",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "^18.2.0",
+    "immer": "^10.1.1"
+  },
+  "sideEffects": false
+}

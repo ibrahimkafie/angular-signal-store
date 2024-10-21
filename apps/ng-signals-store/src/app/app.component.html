@@ -1,0 +1,18 @@
+<h2>
+   here:  {{store.selectUserFullName()}}
+   <button (click)="changeName()">change</button>
+</h2>
+<h2>
+    stories:  {{stores.s2.selectUserFullName()}}
+    <button (click)="stores.s2.setLastName('test')">change</button>
+ </h2>
+ <div>
+   <h2 >Products</h2>
+   <button (click)="loadProducts()">load</button>
+   <ul>
+      @for (product of stores.s1.user().products; track product) {
+        <li>{{ product }}</li>
+      }
+    </ul>
+ </div>
+
