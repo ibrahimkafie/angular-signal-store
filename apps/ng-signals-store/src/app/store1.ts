@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { SignalStore } from "@signals/store";
 import { HttpClient } from "@angular/common/http";
 
@@ -23,11 +23,8 @@ const initialState: AppState2 = {
 @Injectable({
     providedIn: 'root',
 })
-class AppStore2 extends SignalStore<AppState2> {
-
-    constructor(private http: HttpClient) {
-        super(initialState, 'app-store1');
-    }
+class AppStore2 extends SignalStore(initialState, 'app-store1') {
+    http = inject(HttpClient);
 
     // Selectors
     public selectUserFullName = this.get((state) => {

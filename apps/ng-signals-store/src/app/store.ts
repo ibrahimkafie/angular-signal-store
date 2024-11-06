@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { inject, Injectable } from "@angular/core";
 import { SignalStore } from "@signals/store";
 import { HttpClient } from "@angular/common/http";
 
@@ -23,11 +23,8 @@ const initialState: AppState = {
 @Injectable({
     providedIn: 'root',
 })
-class AppStore extends SignalStore<AppState> {
-
-    constructor(private http: HttpClient) {
-        super(initialState, 'app-store');
-    }
+class AppStore extends SignalStore(initialState, 'app-store') {
+    http = inject(HttpClient);
 
     // Selectors
     public selectUserFullName = this.get((state) => {
@@ -42,9 +39,11 @@ class AppStore extends SignalStore<AppState> {
     }
 
     setLoading(loading: boolean): void {
-        this.set((state) => {
-            state.loading = loading;
-        });
+        this.set((state) => { state.loading = loading });
+    }
+
+    toggleLoading(): void {
+        this.patch((state) => ({ loading: !state.loading, ts: '' }))
     }
 
     // Async action

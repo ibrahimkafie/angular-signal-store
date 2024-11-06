@@ -6,6 +6,12 @@
     stories:  {{stores.s2.selectUserFullName()}}
     <button (click)="stores.s2.setLastName('test')">change</button>
  </h2>
+ <button (click)="store.setLoading(!store.loading())">Set loading</button>
+ <button (click)="store.toggleLoading()">Toggle loading</button>
+ @if(store.loading()) {
+   <div>loading...</div>
+ }
+
  <div>
    <h2 >Products</h2>
    <button (click)="loadProducts()">load</button>
